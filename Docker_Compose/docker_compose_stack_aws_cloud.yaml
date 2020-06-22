@@ -1,0 +1,22 @@
+db:
+  image: 'postgres:9.4'
+  restart: always
+redis:
+  image: 'redis:latest'
+  restart: always
+result:
+  autoredeploy: true
+  image: 'docker/example-voting-ap-result:latest'
+  ports:
+    - "80:80"
+  restart: always
+vote:
+  autoredeploy: true
+  image: 'docker/example-voting-app-vote:latest'
+  restart: always
+  ports:
+    - "5000:80"
+worker:
+  autoredploy: true
+  image: 'docker/example-voting-app-worker:latest'
+  restart: always

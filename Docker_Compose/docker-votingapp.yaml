@@ -1,0 +1,28 @@
+---- Name section in docker run command become dictionary.
+---example docker run -d --name=redis redis here redis name would become dictionary
+--- image name become value and key in each dictionary like key=image and value=image name
+--- Ports would be another key and value field in appropriate section.
+--- Links provide with property and array
+-- run docker compose up command to build the entire application stack
+redis:
+  image: redis
+db:
+  image: postgres:9.4
+vote:
+  image: voting-app
+  ports:
+    - 5000:80
+  links:
+    - redis
+result:
+  image:- result-app
+  ports:
+    - 5001:80
+  links:
+    - db
+worker:
+  image: worker
+  links:
+    - redis
+    - db
+
